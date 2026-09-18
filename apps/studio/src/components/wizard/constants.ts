@@ -116,18 +116,8 @@ export type PresetRecommendations = Partial<WizardFormValues>;
 
 export type PresetId = "textbook" | "storybook" | "reference" | "custom";
 
-export interface ExampleBookSettings {
-  renderStrategy: RenderStrategyId;
-  pageGrouping: Exclude<WizardPageGrouping, "">;
-  sectioningMode: Exclude<WizardSectioningMode, "">;
-  activitiesGenerator?: boolean;
-  figureExtraction?: "auto" | "all" | "off";
-}
-
 export interface ExampleBook {
-  title: string;
-  caption?: MessageDescriptor;
-  settings?: ExampleBookSettings;
+  title: MessageDescriptor;
   pdfUrl?: string;
   adtUrl?: string;
   comingSoon?: boolean;
@@ -178,20 +168,16 @@ export const PRESETS: PresetConfig[] = [
     ],
     exampleBooks: [
       {
-        // eslint-disable-next-line lingui/no-unlocalized-strings -- example book titles are intentionally not translated
-        title: "Práticas de Alfabetização e de Matemática",
-        // Temporary metadata until the final preset examples are added.
-        caption: msg`Workbook with exercises and tables · 7-page sample`,
-        settings: {
-          renderStrategy: "llm",
-          pageGrouping: "single",
-          sectioningMode: "dynamic",
-          activitiesGenerator: true,
-          figureExtraction: "auto",
-        },
+        title: msg`Práticas de Alfabetização e de Matemática`,
         pdfUrl: DEMO_PDF_URL,
         adtUrl: DEMO_ADT_URL,
       },
+      {
+        title: msg`Ciências da Natureza - Ensino Fundamental`,
+        comingSoon: true,
+      },
+      { title: msg`História e Sociedade - Vol. 1`, comingSoon: true },
+      { title: msg`Língua Portuguesa - 3° Ano`, comingSoon: true },
     ],
     recommendations: {
       renderStrategy: "llm",
@@ -382,60 +368,12 @@ export const PRESETS: PresetConfig[] = [
     ],
     exampleBooks: [
       {
-        // eslint-disable-next-line lingui/no-unlocalized-strings -- example book titles are intentionally not translated
-        title: "Hyena and Raven",
-        caption: msg`Illustrated story · Single-page sample`,
-        settings: {
-          renderStrategy: "two_column_story",
-          pageGrouping: "single",
-          sectioningMode: "page",
-        },
+        title: msg`Sample Illustrated Story`,
         pdfUrl: DEMO_PDF_URL,
         adtUrl: DEMO_ADT_URL,
       },
-      {
-        // eslint-disable-next-line lingui/no-unlocalized-strings -- example book titles are intentionally not translated
-        title: "Colouring My School",
-        caption: msg`Full-bleed illustrated story · Spread sample`,
-        settings: {
-          renderStrategy: "fixed_layout",
-          pageGrouping: "spread",
-          sectioningMode: "page",
-        },
-        pdfUrl: DEMO_PDF_URL,
-        adtUrl: DEMO_ADT_URL,
-      },
-      {
-        title: "1930 · El viaje",
-        caption: msg`Young-adult fiction · Single-page sample`,
-        settings: {
-          renderStrategy: "llm",
-          pageGrouping: "single",
-          sectioningMode: "page",
-        },
-        pdfUrl: DEMO_PDF_URL,
-        adtUrl: DEMO_ADT_URL,
-      },
-      {
-        // eslint-disable-next-line lingui/no-unlocalized-strings -- example book titles are intentionally not translated
-        title: "Hyena and Raven",
-        settings: {
-          renderStrategy: "two_column_story",
-          pageGrouping: "spread",
-          sectioningMode: "page",
-        },
-        comingSoon: true,
-      },
-      {
-        // eslint-disable-next-line lingui/no-unlocalized-strings -- example book titles are intentionally not translated
-        title: "LP-4 Volcanoes",
-        settings: {
-          renderStrategy: "llm-overlay",
-          pageGrouping: "spread",
-          sectioningMode: "page",
-        },
-        comingSoon: true,
-      }
+      { title: msg`Adventure Tales - Vol. 1`, comingSoon: true },
+      { title: msg`The Lost Forest`, comingSoon: true },
     ],
     recommendations: {
       renderStrategy: "two_column_story",
@@ -515,25 +453,18 @@ export const PRESETS: PresetConfig[] = [
     recommendedStrategies: ["single_column"],
     recommendedFor: [
       msg`Technical documentation`,
-      msg`Scientific papers and journals`,
       msg`Legal and compliance manuals`,
       msg`Medical references`,
       msg`Engineering handbooks`,
     ],
     exampleBooks: [
       {
-        // eslint-disable-next-line lingui/no-unlocalized-strings -- example book titles are intentionally not translated
-        title: "Reimagining Target-Aware Molecular Generation through Retrieval-Enhanced Aligned Diffusion",
-        caption: msg`Scientific paper · 7-page sample`,
-        settings: {
-          renderStrategy: "single_column",
-          pageGrouping: "single",
-          sectioningMode: "page",
-          figureExtraction: "auto",
-        },
+        title: msg`Sample Reference Manual`,
         pdfUrl: DEMO_PDF_URL,
         adtUrl: DEMO_ADT_URL,
       },
+      { title: msg`Engineering Handbook Vol. 2`, comingSoon: true },
+      { title: msg`Legal Compliance Guide`, comingSoon: true },
     ],
     recommendations: {
       renderStrategy: "single_column",
@@ -613,7 +544,14 @@ export const PRESETS: PresetConfig[] = [
       msg`Experimental configurations`,
       msg`Multi-format publications`,
     ],
-    exampleBooks: [],
+    exampleBooks: [
+      {
+        title: msg`Custom Layout Demo`,
+        pdfUrl: DEMO_PDF_URL,
+        adtUrl: DEMO_ADT_URL,
+      },
+      { title: msg`Mixed Content Project`, comingSoon: true },
+    ],
     recommendations: {},
   },
 ];
@@ -653,7 +591,6 @@ const FIELD_LABELS: Partial<Record<keyof WizardFormValues, MessageDescriptor>> =
     imageCropping: msg`Smart Cropping`,
     imageSegmentation: msg`Image Segmentation`,
     figureExtraction: msg`Figure Extraction`,
-    activitiesGenerator: msg`Activity Converter`,
   };
 
 const VALUE_LABELS: Record<string, MessageDescriptor> = {
@@ -662,7 +599,6 @@ const VALUE_LABELS: Record<string, MessageDescriptor> = {
   two_column_story: msg`Two Columns Story`,
   llm: msg`Dynamic`,
   "llm-overlay": msg`Dynamic Overlay`,
-  fixed_layout: msg`Fixed Layout`,
   single: msg`Single Page`,
   spread: msg`Spread`,
   page: msg`Per Page`,
@@ -686,7 +622,7 @@ export function getPresetRecommendationEntries(
   recommendations: PresetRecommendations,
 ): { label: MessageDescriptor; value: MessageDescriptor | string }[] {
   return Object.entries(recommendations)
-    .filter(([key, value]) => key in FIELD_LABELS && value !== undefined)
+    .filter(([key]) => key in FIELD_LABELS)
     .map(([key, value]) => ({
       label: FIELD_LABELS[key as keyof WizardFormValues]!,
       value: formatDefaultValue(key as keyof WizardFormValues, value),

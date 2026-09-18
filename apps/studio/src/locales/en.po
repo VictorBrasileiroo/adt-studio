@@ -1233,8 +1233,8 @@ msgstr "Advanced Settings"
 msgid "Advanced settings currently use a custom review style."
 msgstr "Advanced settings currently use a custom review style."
 
-#~ msgid "Adventure Tales - Vol. 1"
-#~ msgstr "Adventure Tales - Vol. 1"
+msgid "Adventure Tales - Vol. 1"
+msgstr "Adventure Tales - Vol. 1"
 
 msgid "Affected pages"
 msgstr "Affected pages"
@@ -2329,8 +2329,8 @@ msgstr "Choose which per-page validation items reviewers must check, customize t
 msgid "Choose your AI provider"
 msgstr "Choose your AI provider"
 
-#~ msgid "Ciências da Natureza - Ensino Fundamental"
-#~ msgstr "Ciências da Natureza - Ensino Fundamental"
+msgid "Ciências da Natureza - Ensino Fundamental"
+msgstr "Ciências da Natureza - Ensino Fundamental"
 
 msgid "Classic Storybook"
 msgstr "Classic Storybook"
@@ -2907,8 +2907,8 @@ msgstr "Custom"
 msgid "Custom Instructions"
 msgstr "Custom Instructions"
 
-#~ msgid "Custom Layout Demo"
-#~ msgstr "Custom Layout Demo"
+msgid "Custom Layout Demo"
+msgstr "Custom Layout Demo"
 
 msgid "Custom prompt version"
 msgstr "Custom prompt version"
@@ -3627,8 +3627,8 @@ msgstr "End page"
 msgid "Endpoint"
 msgstr "Endpoint"
 
-#~ msgid "Engineering Handbook Vol. 2"
-#~ msgstr "Engineering Handbook Vol. 2"
+msgid "Engineering Handbook Vol. 2"
+msgstr "Engineering Handbook Vol. 2"
 
 msgid "Engineering handbooks"
 msgstr "Engineering handbooks"
@@ -4176,9 +4176,6 @@ msgstr "Full control over render strategies, pruning, and filters."
 msgid "Full project backup & transfer"
 msgstr "Full project backup & transfer"
 
-msgid "Full-bleed illustrated story · Spread sample"
-msgstr "Full-bleed illustrated story · Spread sample"
-
 msgid "Full-size source page preview."
 msgstr "Full-size source page preview."
 
@@ -4595,8 +4592,8 @@ msgstr "Hill"
 msgid "Hint when wrong (don't reveal the answer)"
 msgstr "Hint when wrong (don't reveal the answer)"
 
-#~ msgid "História e Sociedade - Vol. 1"
-#~ msgstr "História e Sociedade - Vol. 1"
+msgid "História e Sociedade - Vol. 1"
+msgstr "História e Sociedade - Vol. 1"
 
 msgid "Hit"
 msgstr "Hit"
@@ -4678,9 +4675,6 @@ msgstr "If you leave now, your unsaved changes will be lost."
 
 msgid "Illustrated children's books"
 msgstr "Illustrated children's books"
-
-msgid "Illustrated story · Single-page sample"
-msgstr "Illustrated story · Single-page sample"
 
 msgid "Illustration"
 msgstr "Illustration"
@@ -5200,8 +5194,8 @@ msgstr "Leave without finishing?"
 msgid "Legal and compliance manuals"
 msgstr "Legal and compliance manuals"
 
-#~ msgid "Legal Compliance Guide"
-#~ msgstr "Legal Compliance Guide"
+msgid "Legal Compliance Guide"
+msgstr "Legal Compliance Guide"
 
 msgid "Legend"
 msgstr "Legend"
@@ -5248,8 +5242,8 @@ msgstr "Lila wandered between the tall pines, her flashlight catching glimmers o
 msgid "lines"
 msgstr "lines"
 
-#~ msgid "Língua Portuguesa - 3° Ano"
-#~ msgstr "Língua Portuguesa - 3° Ano"
+msgid "Língua Portuguesa - 3° Ano"
+msgstr "Língua Portuguesa - 3° Ano"
 
 msgid "Link"
 msgstr "Link"
@@ -5782,8 +5776,8 @@ msgstr "Missing or added content"
 msgid "Missing:"
 msgstr "Missing:"
 
-#~ msgid "Mixed Content Project"
-#~ msgstr "Mixed Content Project"
+msgid "Mixed Content Project"
+msgstr "Mixed Content Project"
 
 msgid "Mobile"
 msgstr "Mobile"
@@ -7246,8 +7240,8 @@ msgstr "position corner toast placement"
 msgid "PR #{0}"
 msgstr "PR #{0}"
 
-#~ msgid "Práticas de Alfabetização e de Matemática"
-#~ msgstr "Práticas de Alfabetização e de Matemática"
+msgid "Práticas de Alfabetização e de Matemática"
+msgstr "Práticas de Alfabetização e de Matemática"
 
 msgid "Pre-defined Terms"
 msgstr "Pre-defined Terms"
@@ -8309,8 +8303,8 @@ msgstr "Runs in background — you can keep editing"
 msgid "Sample"
 msgstr "Sample"
 
-#~ msgid "Sample Illustrated Story"
-#~ msgstr "Sample Illustrated Story"
+msgid "Sample Illustrated Story"
+msgstr "Sample Illustrated Story"
 
 msgid "Sample PDF"
 msgstr "Sample PDF"
@@ -8318,8 +8312,8 @@ msgstr "Sample PDF"
 msgid "Sample Rate"
 msgstr "Sample Rate"
 
-#~ msgid "Sample Reference Manual"
-#~ msgstr "Sample Reference Manual"
+msgid "Sample Reference Manual"
+msgstr "Sample Reference Manual"
 
 msgid "Sample shown for illustration. The actual languages used come from your Output Languages list above."
 msgstr "Sample shown for illustration. The actual languages used come from your Output Languages list above."
@@ -8404,9 +8398,6 @@ msgstr "Scale"
 
 msgid "School textbooks and workbooks"
 msgstr "School textbooks and workbooks"
-
-msgid "Scientific paper · 7-page sample"
-msgstr "Scientific paper · 7-page sample"
 
 msgid "Scientific papers and journals"
 msgstr "Scientific papers and journals"
@@ -10986,9 +10977,6 @@ msgstr "Word-level highlighting"
 msgid "words"
 msgstr "words"
 
-msgid "Workbook with exercises and tables · 7-page sample"
-msgstr "Workbook with exercises and tables · 7-page sample"
-
 msgid "Wrap in group"
 msgstr "Wrap in group"
 
@@ -11047,9 +11035,6 @@ msgstr "You're testing an early build."
 
 msgid "Young adult fiction"
 msgstr "Young adult fiction"
-
-msgid "Young-adult fiction · Single-page sample"
-msgstr "Young-adult fiction · Single-page sample"
 
 msgid "Your AI, your keys."
 msgstr "Your AI, your keys."

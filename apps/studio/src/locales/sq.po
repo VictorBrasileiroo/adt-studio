@@ -1235,8 +1235,8 @@ msgstr "Cilësime të Avancuara"
 msgid "Advanced settings currently use a custom review style."
 msgstr "Cilësimet e avancuara aktualisht përdorin një stil rishikimi të personalizuar."
 
-#~ msgid "Adventure Tales - Vol. 1"
-#~ msgstr "Tregime Aventure - Vol. 1"
+msgid "Adventure Tales - Vol. 1"
+msgstr "Tregime Aventure - Vol. 1"
 
 msgid "Affected pages"
 msgstr "Faqet e prekura"
@@ -2331,8 +2331,8 @@ msgstr "Zgjidhni cilat artikuj validimi për faqe duhet të kontrollojnë rishik
 msgid "Choose your AI provider"
 msgstr "Zgjidhni ofruesin tuaj të IA-së"
 
-#~ msgid "Ciências da Natureza - Ensino Fundamental"
-#~ msgstr "Ciências da Natureza - Ensino Fundamental"
+msgid "Ciências da Natureza - Ensino Fundamental"
+msgstr "Ciências da Natureza - Ensino Fundamental"
 
 msgid "Classic Storybook"
 msgstr "Libër Klasik Tregimesh"
@@ -2909,8 +2909,8 @@ msgstr "I personalizuar"
 msgid "Custom Instructions"
 msgstr "Udhëzime të personalizuara"
 
-#~ msgid "Custom Layout Demo"
-#~ msgstr "Demo e paraqitjes së personalizuar"
+msgid "Custom Layout Demo"
+msgstr "Demo e paraqitjes së personalizuar"
 
 msgid "Custom prompt version"
 msgstr "Version i personalizuar i promptit"
@@ -3629,8 +3629,8 @@ msgstr "Faqja e fundit"
 msgid "Endpoint"
 msgstr "Endpoint"
 
-#~ msgid "Engineering Handbook Vol. 2"
-#~ msgstr "Doracaku i Inxhinierisë Vol. 2"
+msgid "Engineering Handbook Vol. 2"
+msgstr "Doracaku i Inxhinierisë Vol. 2"
 
 msgid "Engineering handbooks"
 msgstr "Doracakë inxhinierike"
@@ -4178,9 +4178,6 @@ msgstr "Kontroll i plotë mbi strategjitë e renderimit, prerjes dhe filtrave."
 msgid "Full project backup & transfer"
 msgstr "Kopje rezervë dhe transferim i plotë i projektit"
 
-msgid "Full-bleed illustrated story · Spread sample"
-msgstr "Histori e ilustruar me imazh deri në skaj · Shembull me dy faqe"
-
 msgid "Full-size source page preview."
 msgstr "Pamje paraprake e faqes burimore në madhësi të plotë."
 
@@ -4597,8 +4594,8 @@ msgstr "Kodër"
 msgid "Hint when wrong (don't reveal the answer)"
 msgstr "Këshillë kur gabon (mos e zbulo përgjigjen)"
 
-#~ msgid "História e Sociedade - Vol. 1"
-#~ msgstr "História e Sociedade - Vol. 1"
+msgid "História e Sociedade - Vol. 1"
+msgstr "História e Sociedade - Vol. 1"
 
 msgid "Hit"
 msgstr "Goditje"
@@ -4680,9 +4677,6 @@ msgstr "Nëse del tani, ndryshimet e tua të paruajtura do të humbasin."
 
 msgid "Illustrated children's books"
 msgstr "Libra për fëmijë të ilustruar"
-
-msgid "Illustrated story · Single-page sample"
-msgstr "Histori e ilustruar · Shembull me një faqe"
 
 msgid "Illustration"
 msgstr "Ilustrim"
@@ -5202,8 +5196,8 @@ msgstr "Dil pa përfunduar?"
 msgid "Legal and compliance manuals"
 msgstr "Manuale ligjore dhe të pajtueshmërisë"
 
-#~ msgid "Legal Compliance Guide"
-#~ msgstr "Udhëzues i pajtueshmërisë ligjore"
+msgid "Legal Compliance Guide"
+msgstr "Udhëzues i pajtueshmërisë ligjore"
 
 msgid "Legend"
 msgstr "Legjenda"
@@ -5250,8 +5244,8 @@ msgstr "Lila endej midis pishave të larta, elektriku i saj duke kapur shkëlqim
 msgid "lines"
 msgstr "rreshta"
 
-#~ msgid "Língua Portuguesa - 3° Ano"
-#~ msgstr "Língua Portuguesa - 3° Ano"
+msgid "Língua Portuguesa - 3° Ano"
+msgstr "Língua Portuguesa - 3° Ano"
 
 msgid "Link"
 msgstr "Lidhje"
@@ -5784,8 +5778,8 @@ msgstr "Përmbajtje e munguar ose e shtuar"
 msgid "Missing:"
 msgstr "Mungojnë:"
 
-#~ msgid "Mixed Content Project"
-#~ msgstr "Projekt me Përmbajtje të Përzier"
+msgid "Mixed Content Project"
+msgstr "Projekt me Përmbajtje të Përzier"
 
 msgid "Mobile"
 msgstr "Celular"
@@ -7248,8 +7242,8 @@ msgstr "pozicioni qoshe vendosja e njoftimeve"
 msgid "PR #{0}"
 msgstr "PR #{0}"
 
-#~ msgid "Práticas de Alfabetização e de Matemática"
-#~ msgstr "Práticas de Alfabetização e de Matemática"
+msgid "Práticas de Alfabetização e de Matemática"
+msgstr "Práticas de Alfabetização e de Matemática"
 
 msgid "Pre-defined Terms"
 msgstr "Terma të Parapërcaktuar"
@@ -8311,8 +8305,8 @@ msgstr "Ekzekutohet në sfond — mund të vazhdoni editimin"
 msgid "Sample"
 msgstr "Shembull"
 
-#~ msgid "Sample Illustrated Story"
-#~ msgstr "Histori e Ilustruar Shembull"
+msgid "Sample Illustrated Story"
+msgstr "Histori e Ilustruar Shembull"
 
 msgid "Sample PDF"
 msgstr "PDF shembull"
@@ -8320,8 +8314,8 @@ msgstr "PDF shembull"
 msgid "Sample Rate"
 msgstr "Shkalla e Shembullit"
 
-#~ msgid "Sample Reference Manual"
-#~ msgstr "Manual Referues Shembull"
+msgid "Sample Reference Manual"
+msgstr "Manual Referues Shembull"
 
 msgid "Sample shown for illustration. The actual languages used come from your Output Languages list above."
 msgstr "Shembull për ilustrim. Gjuhët aktuale të përdorura vijnë nga lista juaj e Gjuhëve të Daljes më lart."
@@ -8406,9 +8400,6 @@ msgstr "Shkallë"
 
 msgid "School textbooks and workbooks"
 msgstr "Tekste shkollore dhe fletore pune"
-
-msgid "Scientific paper · 7-page sample"
-msgstr "Punim shkencor · Shembull me 7 faqe"
 
 msgid "Scientific papers and journals"
 msgstr "Punime shkencore dhe revista"
@@ -10988,9 +10979,6 @@ msgstr "Theksim në nivel fjale"
 msgid "words"
 msgstr "fjalë"
 
-msgid "Workbook with exercises and tables · 7-page sample"
-msgstr "Fletore pune me ushtrime dhe tabela · Shembull me 7 faqe"
-
 msgid "Wrap in group"
 msgstr "Mbështjell në grup"
 
@@ -11049,9 +11037,6 @@ msgstr "Po testoni një version të hershëm."
 
 msgid "Young adult fiction"
 msgstr "Fiksion për të rinj"
-
-msgid "Young-adult fiction · Single-page sample"
-msgstr "Letërsi për të rinj · Shembull me një faqe"
 
 msgid "Your AI, your keys."
 msgstr "IA-ja juaj, çelësat tuaj."

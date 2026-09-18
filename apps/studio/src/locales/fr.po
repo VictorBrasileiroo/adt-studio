@@ -1235,8 +1235,8 @@ msgstr "Paramètres avancés"
 msgid "Advanced settings currently use a custom review style."
 msgstr "Les paramètres avancés utilisent actuellement un style de révision personnalisé."
 
-#~ msgid "Adventure Tales - Vol. 1"
-#~ msgstr "Adventure Tales - Vol. 1"
+msgid "Adventure Tales - Vol. 1"
+msgstr "Adventure Tales - Vol. 1"
 
 msgid "Affected pages"
 msgstr "Pages affectées"
@@ -2331,8 +2331,8 @@ msgstr "Choisissez quels éléments de validation par page les réviseurs doiven
 msgid "Choose your AI provider"
 msgstr "Choisissez votre fournisseur d'IA"
 
-#~ msgid "Ciências da Natureza - Ensino Fundamental"
-#~ msgstr "Ciências da Natureza - Ensino Fundamental"
+msgid "Ciências da Natureza - Ensino Fundamental"
+msgstr "Ciências da Natureza - Ensino Fundamental"
 
 msgid "Classic Storybook"
 msgstr "Classic Storybook"
@@ -2909,8 +2909,8 @@ msgstr "Personnalisé"
 msgid "Custom Instructions"
 msgstr "Instructions personnalisées"
 
-#~ msgid "Custom Layout Demo"
-#~ msgstr "Démo de mise en page personnalisée"
+msgid "Custom Layout Demo"
+msgstr "Démo de mise en page personnalisée"
 
 msgid "Custom prompt version"
 msgstr "Version personnalisée du prompt"
@@ -3629,8 +3629,8 @@ msgstr "Page de fin"
 msgid "Endpoint"
 msgstr "Point de terminaison"
 
-#~ msgid "Engineering Handbook Vol. 2"
-#~ msgstr "Engineering Handbook Vol. 2"
+msgid "Engineering Handbook Vol. 2"
+msgstr "Engineering Handbook Vol. 2"
 
 msgid "Engineering handbooks"
 msgstr "Manuels d'ingénierie"
@@ -4178,9 +4178,6 @@ msgstr "Contrôle total sur les stratégies de rendu, l'élagage et les filtres.
 msgid "Full project backup & transfer"
 msgstr "Sauvegarde et transfert complet du projet"
 
-msgid "Full-bleed illustrated story · Spread sample"
-msgstr "Histoire illustrée à fond perdu · Extrait en double page"
-
 msgid "Full-size source page preview."
 msgstr "Aperçu de la page source en taille réelle."
 
@@ -4597,8 +4594,8 @@ msgstr "Colline"
 msgid "Hint when wrong (don't reveal the answer)"
 msgstr "Indice en cas d'erreur (ne révélez pas la réponse)"
 
-#~ msgid "História e Sociedade - Vol. 1"
-#~ msgstr "História e Sociedade - Vol. 1"
+msgid "História e Sociedade - Vol. 1"
+msgstr "História e Sociedade - Vol. 1"
 
 msgid "Hit"
 msgstr "Hit"
@@ -4680,9 +4677,6 @@ msgstr "Si vous quittez maintenant, vos modifications non enregistrées seront p
 
 msgid "Illustrated children's books"
 msgstr "Livres illustrés pour enfants"
-
-msgid "Illustrated story · Single-page sample"
-msgstr "Histoire illustrée · Extrait en page individuelle"
 
 msgid "Illustration"
 msgstr "Illustration"
@@ -5202,8 +5196,8 @@ msgstr "Quitter sans terminer ?"
 msgid "Legal and compliance manuals"
 msgstr "Manuels juridiques et de conformité"
 
-#~ msgid "Legal Compliance Guide"
-#~ msgstr "Legal Compliance Guide"
+msgid "Legal Compliance Guide"
+msgstr "Legal Compliance Guide"
 
 msgid "Legend"
 msgstr "Légende"
@@ -5250,8 +5244,8 @@ msgstr "Lila errait entre les grands pins, sa lampe de poche captant des éclats
 msgid "lines"
 msgstr "lignes"
 
-#~ msgid "Língua Portuguesa - 3° Ano"
-#~ msgstr "Língua Portuguesa - 3° Ano"
+msgid "Língua Portuguesa - 3° Ano"
+msgstr "Língua Portuguesa - 3° Ano"
 
 msgid "Link"
 msgstr "Lien"
@@ -5784,8 +5778,8 @@ msgstr "Contenu manquant ou ajouté"
 msgid "Missing:"
 msgstr "Manquant :"
 
-#~ msgid "Mixed Content Project"
-#~ msgstr "Projet de contenu mixte"
+msgid "Mixed Content Project"
+msgstr "Projet de contenu mixte"
 
 msgid "Mobile"
 msgstr "Mobile"
@@ -7248,8 +7242,8 @@ msgstr "position coin placement notification"
 msgid "PR #{0}"
 msgstr "PR #{0}"
 
-#~ msgid "Práticas de Alfabetização e de Matemática"
-#~ msgstr "Práticas de Alfabetização e de Matemática"
+msgid "Práticas de Alfabetização e de Matemática"
+msgstr "Práticas de Alfabetização e de Matemática"
 
 msgid "Pre-defined Terms"
 msgstr "Termes prédéfinis"
@@ -8311,8 +8305,8 @@ msgstr "S'exécute en arrière-plan — vous pouvez continuer à éditer"
 msgid "Sample"
 msgstr "Exemple"
 
-#~ msgid "Sample Illustrated Story"
-#~ msgstr "Exemple d'histoire illustrée"
+msgid "Sample Illustrated Story"
+msgstr "Exemple d'histoire illustrée"
 
 msgid "Sample PDF"
 msgstr "PDF d’exemple"
@@ -8320,8 +8314,8 @@ msgstr "PDF d’exemple"
 msgid "Sample Rate"
 msgstr "Taux d'échantillonnage"
 
-#~ msgid "Sample Reference Manual"
-#~ msgstr "Exemple de manuel de référence"
+msgid "Sample Reference Manual"
+msgstr "Exemple de manuel de référence"
 
 msgid "Sample shown for illustration. The actual languages used come from your Output Languages list above."
 msgstr "Exemple montré à titre d'illustration. Les langues réellement utilisées proviennent de votre liste de langues de sortie ci-dessus."
@@ -8406,9 +8400,6 @@ msgstr "Échelle"
 
 msgid "School textbooks and workbooks"
 msgstr "Manuels scolaires et cahiers d'exercices"
-
-msgid "Scientific paper · 7-page sample"
-msgstr "Article scientifique · Extrait de 7 pages"
 
 msgid "Scientific papers and journals"
 msgstr "Articles scientifiques et revues"
@@ -10988,9 +10979,6 @@ msgstr "Surlignage mot à mot"
 msgid "words"
 msgstr "mots"
 
-msgid "Workbook with exercises and tables · 7-page sample"
-msgstr "Cahier d'activités avec exercices et tableaux · Extrait de 7 pages"
-
 msgid "Wrap in group"
 msgstr "Encapsuler dans un groupe"
 
@@ -11049,9 +11037,6 @@ msgstr "Vous testez une version préliminaire."
 
 msgid "Young adult fiction"
 msgstr "fiction jeune adulte"
-
-msgid "Young-adult fiction · Single-page sample"
-msgstr "Roman pour jeunes adultes · Extrait en page individuelle"
 
 msgid "Your AI, your keys."
 msgstr "Votre IA, vos clés."
