@@ -103,7 +103,7 @@ function MixedDiagram() {
             {i18n._(L[2])}
           </div>
         </div>
-        <span className="absolute left-1/2 top-1/2 flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white bg-primary text-primary-foreground">
+        <span className="absolute left-1/2 top-1/2 flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-background bg-primary text-primary-foreground">
           <Link2 className="h-2.5 w-2.5" strokeWidth={2.5} aria-hidden />
         </span>
       </div>
@@ -179,7 +179,7 @@ export function PageGroupingMode() {
           color={accent.bg}
         />
         {recommendedOption && preset && preset.id !== "storybook" && (
-          <p className="text-xs font-normal leading-relaxed text-[#737373]">
+          <p className="text-xs text-muted-foreground">
             <Trans>
               For {i18n._(preset.title)}, we recommend {recommendedOption.label}.
             </Trans>
@@ -195,5 +195,4 @@ export function PageGroupingMode() {
       />
     </Popover>
   )
-  
 }
