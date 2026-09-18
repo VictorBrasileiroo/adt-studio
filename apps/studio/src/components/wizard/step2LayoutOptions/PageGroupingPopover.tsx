@@ -78,7 +78,7 @@ function SinglePreview({ pages, startIndex }: { pages: string[]; startIndex: num
           key={`${startIndex}-${index}`}
           src={src}
           pageNumber={startIndex + index + 1}
-          className="max-h-[76px] max-w-[190px]"
+          className="max-h-[110px] max-w-[300px]"
         />
       ))}
     </div>
@@ -105,7 +105,7 @@ function JoinedPages({
           pageNumber={startIndex + index + 1}
           className={cn(
             "rounded-none border-0 shadow-none",
-            compact ? "max-h-[72px] max-w-[138px]" : "max-h-[126px] max-w-[166px]",
+            compact ? "max-h-[124px] max-w-[178px]" : "max-h-[220px] max-w-[190px]",
           )}
         />
       ))}
@@ -133,7 +133,7 @@ function MergeLaterPreview({ pages, startIndex }: { pages: string[]; startIndex:
         <PdfPageImage
           src={pages[0]}
           pageNumber={startIndex + 1}
-          className="max-h-[58px] max-w-[150px]"
+          className="max-h-[94px] max-w-[240px]"
         />
       )}
       <div className="relative">
@@ -164,7 +164,7 @@ function PreviewViewport({
   usingFallback: boolean
 }) {
   return (
-    <div className="relative flex h-[200px] w-full items-center justify-center overflow-hidden rounded-md border border-border bg-neutral-50 p-4">
+    <div className="relative flex h-[280px] w-full items-center justify-center overflow-hidden rounded-md border border-border bg-neutral-50 p-4">
       {usingFallback && !error && pages.length > 0 && (
         <span className="absolute left-2 top-2 rounded bg-white/90 px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground shadow-sm">
           <Trans>Sample PDF</Trans>
@@ -206,13 +206,13 @@ export function PageGroupingHelpPanel({
   const primaryPreview = usePdfPreviewPages({
     file: open ? file : null,
     mode: "all",
-    width: 220,
+    width: 360,
   })
   const usingFallback = !file || primaryPreview.error !== null
   const fallbackPreview = usePdfPreviewPages({
     src: open && usingFallback ? DEMO_PDF_URL : undefined,
     mode: "all",
-    width: 220,
+    width: 360,
   })
   const activePreview = usingFallback ? fallbackPreview : primaryPreview
 
@@ -251,7 +251,7 @@ export function PageGroupingHelpPanel({
       avoidCollisions
       collisionPadding={12}
       onOpenAutoFocus={(event) => event.preventDefault()}
-      className="max-h-[var(--radix-popover-content-available-height)] w-[420px] max-w-[calc(100vw-1rem)] overflow-y-auto p-4 font-sans"
+      className="max-h-[var(--radix-popover-content-available-height)] w-[460px] max-w-[calc(100vw-1rem)] overflow-y-auto p-4 font-sans"
     >
       <Tabs value={mode} onValueChange={changeMode} className="w-full">
         <TabsList className="grid h-10 w-full grid-cols-3 bg-neutral-50">
