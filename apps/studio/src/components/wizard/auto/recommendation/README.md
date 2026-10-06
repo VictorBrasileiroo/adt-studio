@@ -19,12 +19,13 @@ interface SetupClient {
     `ambiguityReason` in it (`--user-language` in adt-poc-llm).
   - `pages` — `{ start, end }` when the user chose some pages on upload, otherwise absent. The
     recommender should sample inside it (adt-poc-llm currently samples the whole book).
-- **Response** — `setupResultSchema` in `contract.ts` mirrors adt-poc-llm `poc-v1` (V2 output):
+- **Response** — `setupResultSchema` from `@adt/types`, re-exported by `contract.ts`, mirrors adt-poc-llm `poc-v1` (V2 output):
   six decisions (`preset`, `renderStrategy`, `pageGrouping`, `sectioningMode`,
   `activitiesGenerator`, `figureExtraction`), each `{ choice, confidence, reason, alternative,
-  ambiguityReason, evidencePages }`, plus `provider`, `model`, `promptVersion`, `usage`, `timing`.
-  Extra fields (e.g. `bookProfile`) pass through. Per AGENTS.md this schema moves to `@adt/types`
-  once an API route serves it.
+  ambiguityReason, evidencePages }`, plus `provider`, `model`, `promptVersion`, `userLanguage`,
+  `usage` and optional `timing`.
+  Extra fields (e.g. `bookProfile`) pass through. The shared protocol lives in `@adt/types`;
+  the browser `SetupRequest` and presentation helper `ambiguousDecisions` remain in `contract.ts`.
 - **Abort** — Cancel / Start over abort the `signal`; pass it to `fetch`.
 
 Then make it the default in `SetupClientContext.tsx` (it replaces `placeholderSetupClient`). The

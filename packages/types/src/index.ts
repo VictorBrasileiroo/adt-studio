@@ -103,6 +103,27 @@ export { PartRange, PartManifest, ExportedPartEntry, PartsLedger } from "./part.
 export { ProgressEvent } from "./progress.js"
 
 export {
+  CONFIDENCE,
+  PRESET_IDS,
+  RENDER_STRATEGY_IDS,
+  PAGE_GROUPING_IDS,
+  SECTIONING_MODE_IDS,
+  ACTIVITIES_IDS,
+  FIGURE_EXTRACTION_IDS,
+  DECISION_IDS,
+  recommendationSchema,
+  setupResultSchema,
+  createSetupRecommendationModelSchema,
+  validateSetupRecommendationOutput,
+  type Confidence,
+  type Recommendation,
+  type DecisionId,
+  type Decision,
+  type SetupResult,
+  type SetupRecommendationOutput,
+} from "./setup-recommendation.js"
+
+export {
   PageErrorPolicy,
   PageErrorAction,
   PendingDecision,
