@@ -13,3 +13,12 @@ export type {
 export { renderSvgToPng } from "./svg-render.js";
 export { getPngMetadata, decodePng, cropPng, samplePageEdges } from "./png-utils.js";
 export type { PngMetadata } from "./png-utils.js";
+export { extractSetupRecommendationEvidence } from "./setup-recommendation-evidence.js";
+export type {
+  SetupRecommendationTextItem,
+  SetupRecommendationPageEvidence,
+  SetupRecommendationPagePair,
+  SetupRecommendationEvidenceInput,
+  SetupRecommendationRenderedPair,
+  SetupRecommendationEvidence,
+} from "./setup-recommendation-evidence.js";
