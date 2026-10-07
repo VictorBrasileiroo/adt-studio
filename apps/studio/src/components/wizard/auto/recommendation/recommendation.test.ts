@@ -11,11 +11,76 @@ vi.mock("@lingui/react/macro", () => ({
   useLingui: () => ({ t: (s: TemplateStringsArray) => s.join(""), i18n: { _: (v: { id?: string } | string) => (typeof v === "string" ? v : (v.id ?? "")) } }),
 }))
 import { classifySetupError, SetupFailure } from "./client"
-import { ambiguousDecisions, recommendationSchema, setupResultSchema } from "./contract"
+import { ambiguousDecisions, needsRenderDecision, recommendationSchema, setupResultSchema } from "./contract"
 import { fixtureFor, sampledPages } from "./placeholder"
 import { fitStrategy, toAiPicks } from "../review/setup"
 
 const BOOKS = ["matematica-volume-1.pdf", "raven.pdf", "colouring-my-school.pdf", "user-story.pdf", "volcanoes.pdf"]
+
+/** A synthetic contract fixture, independent of any book or recommender engine. */
+function contractRecommendation() {
+  const common = { confidence: "high", reason: "Evidence supports this choice", alternative: null, ambiguityReason: null, evidencePages: [2] }
+  return recommendationSchema.parse({
+    preset: { ...common, choice: "textbook" },
+    renderStrategy: { ...common, choice: "llm" },
+    pageGrouping: { ...common, choice: "single" },
+    sectioningMode: { ...common, choice: "page" },
+    activitiesGenerator: { ...common, choice: "enabled" },
+    figureExtraction: { ...common, choice: "auto" },
+  })
+}
+
+describe("routing to Decide or Review", () => {
+  it("AC-9: routes a render alternative to Decide", () => {
+    const rec = contractRecommendation()
+    rec.renderStrategy = { ...rec.renderStrategy, confidence: "medium", alternative: "llm-overlay", ambiguityReason: "Both render options are supported" }
+    expect(needsRenderDecision(recommendationSchema.parse(rec))).toBe(true)
+  })
+
+  it("AC-9: routes to Review without a render alternative", () => {
+    expect(needsRenderDecision(contractRecommendation())).toBe(false)
+  })
+
+  it("AC-9: routes to Review when only figure extraction has an alternative", () => {
+    const rec = contractRecommendation()
+    rec.figureExtraction = { ...rec.figureExtraction, confidence: "medium", alternative: "all", ambiguityReason: "Both extraction options are supported" }
+    expect(needsRenderDecision(recommendationSchema.parse(rec))).toBe(false)
+  })
+
+  it.each(["low", "medium"] as const)("AC-9: routes to Review with %s render confidence and no alternative", (confidence) => {
+    const rec = contractRecommendation()
+    rec.renderStrategy.confidence = confidence
+    expect(needsRenderDecision(recommendationSchema.parse(rec))).toBe(false)
+  })
+})
+
+describe("raw recommendation versus applied strategy", () => {
+  it.each([
+    ["llm-overlay", "llm-overlay"],
+    ["single_column", "llm"],
+    [null, "llm"],
+  ] as const)("AC-10: fits an incompatible choice with alternative %s to %s without mutating the backend recommendation", (alternative, applied) => {
+    const rec = contractRecommendation()
+    rec.renderStrategy = {
+      ...rec.renderStrategy,
+      choice: "fixed_layout",
+      confidence: "medium",
+      alternative,
+      ambiguityReason: alternative === null ? null : "Both render options are supported",
+    }
+    const recommendation = recommendationSchema.parse(rec)
+    const before = structuredClone(recommendation)
+
+    const picks = toAiPicks(recommendation)
+
+    expect(picks.renderStrategy).toBe(applied)
+    expect(picks.renderStrategy).not.toBe(before.renderStrategy.choice)
+    expect(picks.strategyAdjustedFrom).toBe("fixed_layout")
+    expect(picks.decisions.renderStrategy.choice).toBe("fixed_layout")
+    expect(picks.decisions).toEqual(before)
+    expect(recommendation).toEqual(before)
+  })
+})
 
 describe("setup contract", () => {
   it("accepts what the recommender returns for every sample book", () => {

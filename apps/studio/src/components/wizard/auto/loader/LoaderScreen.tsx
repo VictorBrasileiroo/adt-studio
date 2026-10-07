@@ -10,7 +10,7 @@ import { RealBook, useComments } from "./RealBook"
 import { useBookPages } from "./useBookPages"
 import { toAiPicks, useAiPicks } from "../review/setup"
 import { useSetupClient } from "../recommendation/SetupClientContext"
-import type { SetupResult } from "../recommendation/contract"
+import { needsRenderDecision, type SetupResult } from "../recommendation/contract"
 import { useSetupRun } from "../recommendation/useSetupRun"
 import "../../core/flow.css"
 import { ENTER, ScreenShell } from "../../core/ui"
@@ -51,7 +51,7 @@ export function LoaderScreen({ onDone, onUnsure, onStartOver, onManual }: { onDo
   useEffect(() => {
     const answer = setup.result
     if (!state.finished || !answer) return
-    const id = window.setTimeout(() => (answer.recommendation.renderStrategy.alternative !== null ? onUnsure(answer) : onDone(answer)), HANDOFF_MS)
+    const id = window.setTimeout(() => (needsRenderDecision(answer.recommendation) ? onUnsure(answer) : onDone(answer)), HANDOFF_MS)
     return () => window.clearTimeout(id)
   }, [state.finished, setup.result])
 

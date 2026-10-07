@@ -26,3 +26,8 @@ export type SetupRequest = { file: File; userLanguage: string; pages?: { start: 
 export function ambiguousDecisions(rec: Recommendation): DecisionId[] {
   return DECISION_IDS.filter((id) => rec[id].alternative !== null)
 }
+
+/** Only a render alternative needs Decide before Review. Confidence alone does not. */
+export function needsRenderDecision(rec: Recommendation): boolean {
+  return rec.renderStrategy.alternative !== null
+}
