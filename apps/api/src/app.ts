@@ -39,6 +39,7 @@ import { createEditableActivitiesRoutes } from "./routes/editable-activities.js"
 import { createAgentRoutes } from "./routes/agents.js"
 import { createTranslationEvaluationRoutes } from "./routes/translation-evaluations.js"
 import { createProviderRoutes } from "./routes/providers.js"
+import { createSetupRecommendationRoutes } from "./routes/setup-recommendation.js"
 
 // Resolve paths relative to monorepo root (2 levels up from apps/api/)
 const projectRoot = path.resolve(
@@ -99,6 +100,7 @@ app.onError(errorHandler)
 
 app.route("/api", healthRoutes)
 app.route("/api", createProviderRoutes(configPath))
+app.route("/api", createSetupRecommendationRoutes())
 // Mounted before /books/:label so GET /books/events is not captured as a label.
 app.route("/api", createBookEventsRoutes(eventBus))
 app.route("/api", createBookRoutes(booksDir, webAssetsDir, configPath, taskService))
