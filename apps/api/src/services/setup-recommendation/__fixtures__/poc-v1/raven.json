@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "pocCommit": "fd367428b5ca9bf1c2d7df1d980fe02788c02d17",
+  "variant": "poc-v1",
+  "provenance": {
+    "spec": "SPEC-0016",
+    "specRef": "origin/spec/333-ai-setup-recommender",
+    "status": "local provisional; spec in-review",
+    "analyzer": "src/analyzer/pdf-analyzer.ts analyzePdf; per-page observations confirmed by temporary instrumentation of its exact frozen source, with unchanged logic and original dependencies",
+    "sampling": "src/recommendation/representative-pages.ts",
+    "render": "src/recommendation/page-renderer.ts renderSampledPagePairs",
+    "request": "src/recommendation/openai-recommender.ts recommendBookWithOpenAIPoCV1 with injected offline responses.parse",
+    "rasterDimensions": "Frozen renderPage viewport/ceil; confirmed by contact-sheet PNG headers",
+    "equality": "All pocBaseline values are strict equality targets except the enumerated knownEngineDeltas. Never substitute ADT output for the PoC baseline.",
+    "engines": {
+      "poc": "6.3.289",
+      "adt": "1.27.0"
+    }
+  },
+  "pdf": {
+    "path": "tests/fixtures/raven.pdf",
+    "sha256": "8d3ad571661fb7b02f7a6259a50f4d8b8bd14b55c6b5207580e33cea3c8b9e87",
+    "pageCount": 12
+  },
+  "pocBaseline": {
+    "observations": [
+      {"pageNumber":1,"width":595,"height":420,"charCount":47,"textItemCount":7,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false},
+      {"pageNumber":2,"width":595,"height":420,"charCount":71,"textItemCount":7,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false},
+      {"pageNumber":3,"width":595,"height":420,"charCount":75,"textItemCount":6,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false},
+      {"pageNumber":4,"width":595,"height":420,"charCount":94,"textItemCount":8,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false},
+      {"pageNumber":5,"width":595,"height":420,"charCount":90,"textItemCount":7,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false},
+      {"pageNumber":6,"width":595,"height":420,"charCount":92,"textItemCount":7,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false},
+      {"pageNumber":7,"width":595,"height":420,"charCount":69,"textItemCount":6,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false},
+      {"pageNumber":8,"width":595,"height":420,"charCount":109,"textItemCount":8,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false},
+      {"pageNumber":9,"width":595,"height":420,"charCount":98,"textItemCount":8,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false},
+      {"pageNumber":10,"width":595,"height":420,"charCount":90,"textItemCount":7,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false},
+      {"pageNumber":11,"width":595,"height":420,"charCount":92,"textItemCount":8,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false},
+      {"pageNumber":12,"width":595,"height":420,"charCount":403,"textItemCount":36,"imageOperationCount":2,"isLandscape":true,"isLikelyMultiColumn":false,"hasActivitySignals":false}
+    ],
+    "bookProfile": {
+      "pageCount": 12,
+      "text": {
+        "totalChars": 1330,
+        "avgCharsPerPage": 110.83333333333333,
+        "medianCharsPerPage": 91,
+        "lowTextPageRatio": 0.9166666666666666,
+        "highTextPageRatio": 0
+      },
+      "images": {
+        "totalImageOperations": 24,
+        "pagesWithImagesRatio": 1,
+        "avgImagesPerPage": 2
+      },
+      "layout": {
+        "landscapePageRatio": 1,
+        "multiColumnPageRatio": 0
+      },
+      "activities": {
+        "activitySignalPageRatio": 0
+      }
+    },
+    "pairs": [
+      [2,3],
+      [6,7],
+      [10,11]
+    ],
+    "sampledPages": [2,3,6,7,10,11],
+    "sampledText": [
+      {"pageNumber":2,"length":77,"sha256":"9aa75e95535e4bea559ba8342ad84511029af91f4b84eec038e05033bc30a241"},
+      {"pageNumber":3,"length":80,"sha256":"b009176b891fd5df101eaf8b26f798c959d3b92ae89ad3d1e1e3b0934929a115"},
+      {"pageNumber":6,"length":98,"sha256":"f969069b006296a0fe4c237b656e03d9188eacef58d19584655eff971fb92d36"},
+      {"pageNumber":7,"length":74,"sha256":"4c79b66c38daeecf67f4a0db497cfde8b575d4a595ebd1fac784f596e5f694c4"},
+      {"pageNumber":10,"length":96,"sha256":"f448e6e629575eea5a492725be3a991369d6d92fa46858f6dda400925b1c7030"},
+      {"pageNumber":11,"length":99,"sha256":"19762cb140a4dac886a65228b659563b919db6a8735e3fc75b51fa2107b3df29"}
+    ],
+    "render": {
+      "pages": [
+        {"pageNumber":2,"width":1100,"height":777},
+        {"pageNumber":3,"width":1100,"height":777},
+        {"pageNumber":6,"width":1100,"height":777},
+        {"pageNumber":7,"width":1100,"height":777},
+        {"pageNumber":10,"width":1100,"height":777},
+        {"pageNumber":11,"width":1100,"height":777}
+      ],
+      "sheets": [
+        {"pages":[2,3],"width":2212,"height":777},
+        {"pages":[6,7],"width":2212,"height":777},
+        {"pages":[10,11],"width":2212,"height":777}
+      ]
+    },
+    "request": {
+      "promptVersion": "adt-config-recommender-poc-v1",
+      "provider": "openai",
+      "model": "gpt-5.4-mini",
+      "userLanguage": "pt-BR",
+      "promptSha256": "c7300e113e6b9dcff7c78d807389b27d3cb755691e7c17c5de74cad5a36ef7c9",
+      "decisionKnowledgeSha256": "e79bafab8955d959a1d9b8bc180e0d815e7960886f6c2a459a199ce2cef6ea8e",
+      "role": "user",
+      "parts": [
+        {"kind":"profile","length":494,"sha256":"5531f62d07aba2f36c16f219f0d021ff1c596c55581113e5349650577601dc30"},
+        {"kind":"pairText","length":335,"sha256":"6f76afcdf8aed6f1b49201ef7dfb692292bcbc1da28b52eb7a57d487a7d17e77","pairNumber":1,"pages":[2,3]},
+        {"kind":"pairImage","dimensions":{"width":2212,"height":777},"pairNumber":1,"pages":[2,3]},
+        {"kind":"pairText","length":350,"sha256":"fb54ed9402d4b1f5f59ed9e959887c71a34c9a63c83d83a13ef92002f88a9477","pairNumber":2,"pages":[6,7]},
+        {"kind":"pairImage","dimensions":{"width":2212,"height":777},"pairNumber":2,"pages":[6,7]},
+        {"kind":"pairText","length":375,"sha256":"75773bc5f3ea04182b03ba8ddca0773462bd80170a95d14155fc5517a228195c","pairNumber":3,"pages":[10,11]},
+        {"kind":"pairImage","dimensions":{"width":2212,"height":777},"pairNumber":3,"pages":[10,11]},
+        {"kind":"task","length":195,"sha256":"7cbec921644b8f2ce4ea7d17b39646769befe73e751eca6c264f433474189ed2"}
+      ],
+      "schema": {
+        "sampledPages": [2,3,6,7,10,11],
+        "decisions": [
+          {"id":"preset","choices":["textbook","storybook","reference"]},
+          {"id":"renderStrategy","choices":["llm","llm-overlay","single_column","two_column_story","fixed_layout"]},
+          {"id":"pageGrouping","choices":["single","spread"]},
+          {"id":"sectioningMode","choices":["page","dynamic"]},
+          {"id":"activitiesGenerator","choices":["enabled","disabled"]},
+          {"id":"figureExtraction","choices":["off","auto","all"]}
+        ],
+        "fields": ["choice","confidence","reason","alternative","ambiguityReason","evidencePages"],
+        "branches": [
+          {"confidence":["low","medium","high"],"alternative":"null","ambiguityReason":"null","reasonMinLength":1,"reasonMaxLength":500},
+          {"confidence":["low","medium"],"alternative":"choice","ambiguityReason":"string","reasonMinLength":1,"reasonMaxLength":500}
+        ]
+      }
+    }
+  },
+  "knownEngineDeltas": {
+    "classification": "KNOWN_ENGINE_DELTA",
+    "cause": "On physical page 12, PDF.js retains five standalone overprinted hyphens alongside the hyphen/name runs. MuPDF retains the five hyphen/name runs but omits the redundant standalone hyphens. No other observed page field differs. The charCount crosses the 400 column-analysis entry threshold, but isLikelyMultiColumn remains false in both engines. Text-density classes, median, all layout/activity/image proxies and sampled text remain equal. No measured semantic classification changes; live recommendation effect is not established here.",
+    "page12": {
+      "charCount": {
+        "poc": 403,
+        "adt": 398
+      },
+      "textItemCount": {
+        "poc": 36,
+        "adt": 31
+      }
+    },
+    "bookProfileText": {
+      "totalChars": {
+        "poc": 1330,
+        "adt": 1325
+      },
+      "avgCharsPerPage": {
+        "poc": 110.83333333333333,
+        "adt": 110.41666666666667
+      }
+    },
+    "requestProfile": {
+      "poc": {
+        "kind": "profile",
+        "length": 494,
+        "sha256": "5531f62d07aba2f36c16f219f0d021ff1c596c55581113e5349650577601dc30"
+      },
+      "adt": {
+        "kind": "profile",
+        "length": 494,
+        "sha256": "c44768abbbae55748b45f69b987386501e5fab91296b23651c0c3312ee0699eb"
+      }
+    }
+  },
+  "deliberatelyNotFrozen": {
+    "images": "No PNG bytes, pixels or base64: only physical ordering and raster/sheet dimensions.",
+    "transport": "PoC Responses input_image/detail high versus ADT structured text/image without a detail port; known architectural difference, outside logical request parity.",
+    "response": "No live LLM output or quality score. The fake returns a synthetic valid response solely to let the real recommender complete.",
+    "timing": "Wall-clock timings and token usage are not deterministic evidence."
+  }
+}
