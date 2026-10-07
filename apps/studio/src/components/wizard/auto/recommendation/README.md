@@ -1,10 +1,10 @@
 # Setup recommendation — integration notes
 
 The "Let AI set it up" path of **Add Book** (`/books/new`) asks a recommender for the book's settings.
-The screens are done; the recommender is behind one interface and currently answered by a
-placeholder. Connecting the real recommender means implementing that interface.
+The default `apiSetupClient` implements `SetupClient` through
+`POST /api/setup/recommendation`. The placeholder remains available for fixtures and isolated development.
 
-## What to implement
+## Contract
 
 ```ts
 // recommendation/client.ts
@@ -18,7 +18,7 @@ interface SetupClient {
   - `userLanguage` — the UI locale (e.g. `pt-BR`); the recommender writes `reason` and
     `ambiguityReason` in it (`--user-language` in adt-poc-llm).
   - `pages` — `{ start, end }` when the user chose some pages on upload, otherwise absent. The
-    recommender should sample inside it (adt-poc-llm currently samples the whole book).
+    recommender samples inside it while keeping physical PDF page numbers.
 - **Response** — `setupResultSchema` from `@adt/types`, re-exported by `contract.ts`, mirrors adt-poc-llm `poc-v1` (V2 output):
   six decisions (`preset`, `renderStrategy`, `pageGrouping`, `sectioningMode`,
   `activitiesGenerator`, `figureExtraction`), each `{ choice, confidence, reason, alternative,
@@ -28,9 +28,10 @@ interface SetupClient {
   the browser `SetupRequest` and presentation helper `ambiguousDecisions` remain in `contract.ts`.
 - **Abort** — Cancel / Start over abort the `signal`; pass it to `fetch`.
 
-Then make it the default in `SetupClientContext.tsx` (it replaces `placeholderSetupClient`). The
-call should go through `apps/studio/src/api/client.ts` like every other API call, with the
-provider key in headers as the other routes do.
+`SetupClientContext.tsx` defaults to `apiSetupClient`. The call goes through
+`apps/studio/src/api/client.ts`, with credentials in headers built from provider manifests.
+V1 requires OpenAI API with structured text and image input; server-side credentials also qualify.
+Recommendation is transient before Create, with no book/cache/evidence persistence.
 
 ## Errors
 
@@ -44,8 +45,10 @@ Throw whatever fails; `classifySetupError` (in `client.ts`) sorts it for the loa
 | `unknown` | anything else (invalid structured output, unreadable PDF, …) | "We couldn't read this book" → Try again |
 
 Every error offers "Set it up myself" (the step-by-step wizard, PDF kept) and shows the raw message
-under "Show details". The shared `request()` helper only keeps the message, so attaching the HTTP
-`status` to the thrown error makes the sorting exact.
+under "Show details". The shared `request()` helper throws `ApiRequestError` with the HTTP status.
+The route preserves upstream 401/403/429 using safe messages and leaves `AiProviderError` to the
+global handler. Other failures return a generic 500. In particular, the current core throws
+untyped errors for ranges beyond the PDF page count, so they cannot yet be mapped safely to 400.
 
 ## What the screens do with the answer
 

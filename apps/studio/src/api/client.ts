@@ -24,6 +24,7 @@ import type {
   ProviderCliLoginStatus,
   ProviderHealthResponse,
   AiModality,
+  SetupResult,
 } from "@adt/types"
 import type { ExportFormat } from "@/components/pipeline/stages/export/export-formats"
 import {
@@ -97,6 +98,13 @@ export function getBookCoverUrl(label: string, cacheKey?: string): string {
   return `${base}?${params.toString()}`
 }
 
+export class ApiRequestError extends Error {
+  constructor(message: string, readonly status: number) {
+    super(message)
+    this.name = "ApiRequestError"
+  }
+}
+
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const url = `${BASE_URL}${path}`
   const res = await fetch(url, {
@@ -117,7 +125,8 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
     } catch {
       message = text || undefined
     }
-    throw new Error(message ?? `Request failed: ${res.status}`)
+    // eslint-disable-next-line lingui/no-unlocalized-strings -- preserve the existing API diagnostic fallback
+    throw new ApiRequestError(message ?? `Request failed: ${res.status}`, res.status)
   }
 
   return res.json()
@@ -1008,6 +1017,19 @@ export interface TaskInfoResponse {
 }
 
 export const api = {
+  async recommendSetup(file: File, userLanguage: string, pages?: { start: number; end: number }, signal?: AbortSignal): Promise<SetupResult> {
+    const form = new FormData()
+    form.append("pdf", file)
+    form.append("userLanguage", userLanguage)
+    if (pages !== undefined) form.append("pages", JSON.stringify(pages))
+    return request<SetupResult>("/setup/recommendation", {
+      method: "POST",
+      body: form,
+      headers: await buildApiHeaders(""),
+      signal,
+    })
+  },
+
   getBooks: () => request<BookSummary[]>("/books"),
 
   getBook: (label: string) => request<BookDetail>(`/books/${label}`),

@@ -10,7 +10,7 @@ export type Fixture = Pick<SetupResult, "provider" | "model" | "promptVersion" |
  * The pages the recommender samples (adt-poc-llm `selectRepresentativePagePairs`): pages 1–N for short
  * books, otherwise 2…N−1 in consecutive pairs; with more than three pairs, the first, a middle and
  * the last one. Fixtures cite these so "based on pages …" matches what the backend would say. With a
- * chosen range the same rule runs inside it (the backend doesn't take a range yet).
+ * chosen range, sampling intersects physical-document eligibility and falls back to the range when empty.
  */
 export function sampledPages(pageCount: number, range?: { start: number; end: number }): number[] {
   if (pageCount < 1) return []

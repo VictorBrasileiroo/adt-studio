@@ -5,7 +5,8 @@ import { Trans, useLingui } from "@lingui/react/macro"
 import { Plug, ShieldCheck } from "lucide-react"
 import { useWizardForm } from "@/components/wizard/core/wizardForm"
 import { cn } from "@/lib/utils"
-import { useApiKey } from "@/hooks/use-api-key"
+import { useProviderCredentials } from "@/hooks/use-provider-credentials"
+import { isProviderAvailable } from "@/api/provider-credentials"
 import { BackButton, ENTER, PrimaryButton, ScreenShell } from "../../core/ui"
 import { AiPill, AutoScene, ManualScene } from "./scenes"
 import { useSampledPages } from "./useSampledPages"
@@ -57,14 +58,19 @@ function OptionCard({ value, checked, onSelect, disabled, scene, badge, title, t
 
 /**
  * Choose — how the book gets set up. Two radio cards (AI recommended and preselected, manual a
- * real but quieter peer) and one Continue. Without an AI provider the AI card stays visible but
+ * real but quieter peer) and one Continue. Without the supported OpenAI path the AI card stays visible but
  * disabled, pointing to the provider settings, and manual is selected.
  */
 export function ChooseScreen({ onAuto, onManual, onBack }: { onAuto: () => void; onManual: () => void; onBack: () => void }) {
   const { t } = useLingui()
   const form = useWizardForm()
   const file = useStore(form.store, (s) => s.values.file)
-  const providerConnected = useApiKey().hasStructuredTextProvider
+  const { providers, credentials } = useProviderCredentials()
+  const openai = providers.find(({ manifest }) => manifest.id === "openai")
+  const providerConnected = Boolean(openai &&
+    openai.manifest.modalities.includes("structured-text") &&
+    openai.manifest.capabilities["structured-text"]?.imageInput &&
+    isProviderAvailable(openai, credentials))
   const [picked, setPicked] = useState<SetupMode>("auto")
   const mode: SetupMode = providerConnected ? picked : "manual"
   const sampled = useSampledPages(file, { count: 3, width: 240 })

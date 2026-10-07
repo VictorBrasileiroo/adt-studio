@@ -1,9 +1,14 @@
+import { api } from "@/api/client"
 import type { SetupErrorKind } from "../errors/SetupError"
 import type { SetupRequest, SetupResult } from "./contract"
 
-/** What the screens need from the recommender. The integration implements this over the API client. */
+/** What the screens need from the recommender. */
 export interface SetupClient {
   recommend(request: SetupRequest, signal: AbortSignal): Promise<SetupResult>
+}
+
+export const apiSetupClient: SetupClient = {
+  recommend: (request, signal) => api.recommendSetup(request.file, request.userLanguage, request.pages, signal),
 }
 
 /** A failed setup, already sorted into what the user can do about it, with the raw message kept for "Show details". */

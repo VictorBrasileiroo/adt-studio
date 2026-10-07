@@ -1,10 +1,9 @@
 import { createContext, useContext } from "react"
-import type { SetupClient } from "./client"
-import { placeholderSetupClient } from "./placeholder"
+import { apiSetupClient, type SetupClient } from "./client"
 
-const SetupClientContext = createContext<SetupClient>(placeholderSetupClient)
+const SetupClientContext = createContext<SetupClient>(apiSetupClient)
 
-/** Which recommender the flow talks to. Defaults to the placeholder; the API client replaces it, and tests can pass their own. */
+/** Defaults to the API client; tests and isolated development can pass a fake. */
 export const SetupClientProvider = SetupClientContext.Provider
 
 export function useSetupClient(): SetupClient {
