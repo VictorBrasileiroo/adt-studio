@@ -15,6 +15,7 @@ export const recordSchema = z.object({
   repetition: z.number().int().min(1).max(10),
   hashes: z.object({ pdf: z.string().min(1), evidence: z.string().min(1), request: z.string().min(1) }).strict(),
   modelId: z.string().min(1), promptVersion: z.string().min(1),
+  experiment: z.literal("smoke").optional(), provider: z.string().min(1).optional(),
   sampledPages: z.array(z.number().int().positive()).min(1),
   status: z.enum(["success", "invalid", "error"]), response: z.unknown().optional(),
   choices: z.record(z.string()).optional(), errorCategory: z.string().optional(),

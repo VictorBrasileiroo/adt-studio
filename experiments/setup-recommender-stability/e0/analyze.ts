@@ -22,7 +22,7 @@ const totals = (values: Array<number | undefined>) => {
 }
 
 export function analyze(input: Recorded[]) {
-  const records = input.map(record => recordSchema.parse(record))
+  const records = input.map(record => recordSchema.parse(record)).filter(record => record.experiment !== "smoke")
   const groups = new Map<string, Recorded[]>()
   const seen = new Set<string>()
   for (const record of records) {
@@ -77,6 +77,11 @@ export function analyze(input: Recorded[]) {
 }
 
 export async function analyzeDirectory(directory: string) {
+  const run = await readFile(path.join(directory, "run.json"), "utf8").catch((error: NodeJS.ErrnoException) => {
+    if (error.code === "ENOENT") return undefined
+    throw error
+  })
+  if (run && JSON.parse(run).mode === "smoke") throw new Error("Smoke results are excluded from the E0 baseline")
   const records: Recorded[] = []
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue

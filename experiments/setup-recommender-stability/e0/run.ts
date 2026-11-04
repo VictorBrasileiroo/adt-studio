@@ -6,7 +6,7 @@ import { performance } from "node:perf_hooks"
 import { fileURLToPath } from "node:url"
 import type { LLMModel, TokenUsage } from "../../../packages/llm/src/types.js"
 import { DECISION_IDS, validateSetupRecommendationOutput } from "../../../packages/types/src/setup-recommendation.js"
-import { createSetupRecommendationModel, SETUP_RECOMMENDATION_MODEL_ID } from "../../../apps/api/src/services/setup-recommendation/recommend.js"
+import { createSetupRecommendationModel, SETUP_RECOMMENDATION_MODEL_ID, SETUP_RECOMMENDATION_PROVIDER } from "../../../apps/api/src/services/setup-recommendation/recommend.js"
 import { POC_V1_PROMPT_VERSION } from "../../../apps/api/src/services/setup-recommendation/prompt.js"
 import { hash, logicalRequest, verifyPreparation } from "./prepare.js"
 import { analyzeDirectory } from "./analyze.js"
@@ -18,6 +18,7 @@ const root = path.resolve(directory, "../../..")
 const git = (...args: string[]) => execFileSync("git", ["-c", `safe.directory=${root.replaceAll("\\", "/")}`, ...args],
   { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim()
 export const save = (filename: string, value: unknown) => writeFile(filename, JSON.stringify(value, null, 2) + "\n", { flag: "wx" })
+class RunnerInputError extends Error {}
 
 export function classifyError(error: unknown): string {
   if (typeof error !== "object" || error === null) return "provider-or-transport-or-structured-parse"
@@ -33,11 +34,13 @@ export function classifyError(error: unknown): string {
 
 export async function runRepetitions(
   frozen: Awaited<ReturnType<typeof verifyPreparation>>["frozen"], model: LLMModel,
-  metadata: { runId: string; caseId: string; commit: string },
+  metadata: { runId: string; caseId: string; commit: string; experiment?: "smoke"; provider?: string },
   persist: (record: typeof recordSchema._output) => Promise<unknown>,
+  repetitions: 1 | 10 = 10,
 ) {
+  if (repetitions !== 1 && repetitions !== 10) throw new RunnerInputError("Repetitions must be 1 or 10")
   const records: Parameters<typeof persist>[0][] = []
-  for (let repetition = 1; repetition <= 10; repetition++) {
+  for (let repetition = 1; repetition <= repetitions; repetition++) {
     // Guard against mutation by the transport between repetitions.
     if (hash(logicalRequest(frozen.request)) !== frozen.hashes.request) throw new Error("Frozen request changed")
     const started = performance.now()
@@ -71,33 +74,44 @@ export async function runRepetitions(
 
 export async function main(args: string[], resultsRoot = path.join(directory, "results")) {
   let paid = false
+  let smoke = false
+  let caseId: string | undefined
   let corpusPath = path.join(directory, "../corpus.json")
   let corpusSeen = false
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--allow-paid" && !paid) { paid = true; continue }
+    if (args[i] === "--smoke" && !smoke) { smoke = true; continue }
+    if (args[i] === "--case" && caseId === undefined && args[i + 1] && !args[i + 1]!.startsWith("--")) {
+      caseId = args[++i]!; continue
+    }
     if (args[i] === "--corpus" && !corpusSeen && args[i + 1] && !args[i + 1]!.startsWith("--")) {
       corpusPath = path.resolve(args[++i]!); corpusSeen = true; continue
     }
-    throw new Error("Usage: run.ts [--corpus MANIFEST] [--allow-paid] (each option at most once)")
+    throw new RunnerInputError("Usage: run.ts [--corpus MANIFEST] [--allow-paid] [--smoke --case CASE_ID] (each option at most once)")
   }
+  if (smoke && !paid) throw new RunnerInputError("Smoke requires --allow-paid; no inference executed")
+  if (smoke && !caseId) throw new RunnerInputError("Smoke requires --case CASE_ID")
+  if (!smoke && caseId !== undefined) throw new RunnerInputError("--case requires --smoke")
   const corpus = corpusSchema.parse(JSON.parse(await readFile(corpusPath, "utf8")))
+  const cases = smoke ? corpus.cases.filter(entry => entry.id === caseId) : corpus.cases
+  if (!cases.length) throw new RunnerInputError("Unknown case; select an ID from the corpus")
   const commit = git("rev-parse", "HEAD")
   git("merge-base", "--is-ancestor", base, "HEAD")
   // Allow a future harness-only commit, but reject changed V1 code/dependencies.
   git("diff", "--exit-code", base, "--", "apps/api/src/services/setup-recommendation", "packages/llm", "packages/types", "packages/pdf", "pnpm-lock.yaml", "package.json")
   const runId = `${new Date().toISOString().replace(/[:.]/g, "-")}-${randomUUID()}`
-  const output = path.join(resultsRoot, runId)
+  const output = smoke ? path.join(resultsRoot, "smoke", runId) : path.join(resultsRoot, runId)
   await mkdir(output, { recursive: true })
   await save(path.join(output, "run.json"), { runId, base, commit, branch: git("branch", "--show-current"),
-    mode: paid ? "paid" : "prepare-only", corpus, node: process.version, platform: process.platform,
+    mode: smoke ? "smoke" : paid ? "paid" : "prepare-only", ...(smoke ? { caseId } : {}), corpus, node: process.version, platform: process.platform,
     lockfileHash: hash(await readFile(path.join(root, "pnpm-lock.yaml"), "utf8")),
     sourceHashes: Object.fromEntries(await Promise.all(["recommend", "evidence", "profile", "sampling", "prompt", "decision-specs"].map(async name =>
       [name, hash(await readFile(path.join(root, `apps/api/src/services/setup-recommendation/${name}.ts`), "utf8"))]))),
     logicalDefaults: "See each case request.json; omitted generation options remain omitted" })
-  console.log(`Run directory: ${output}; mode: ${paid ? "PAID" : "prepare-only (0 LLM calls)"}`)
+  console.log(`Run directory: ${output}; mode: ${smoke ? "SMOKE (1 attempt)" : paid ? "PAID" : "prepare-only (0 LLM calls)"}`)
   const prepared = []
   let blocked = false
-  for (const entry of corpus.cases) {
+  for (const entry of cases) {
     const caseDir = path.join(output, entry.id)
     await mkdir(caseDir)
     try {
@@ -118,19 +132,27 @@ export async function main(args: string[], resultsRoot = path.join(directory, "r
   }
   if (blocked) throw new Error(`Corpus/preparation blocked; see ${output}`)
   if (!paid) return output
-  if (new Set(prepared.map(item => item.frozen.hashes.pdf)).size !== 3) throw new Error("Paid corpus requires three distinct PDFs")
+  if (!smoke && new Set(prepared.map(item => item.frozen.hashes.pdf)).size !== 3) throw new Error("Paid corpus requires three distinct PDFs")
   // No provider creation, credential resolution, or network access before this gate.
   if (!process.env.OPENAI_API_KEY?.trim()) throw new Error("OPENAI_API_KEY required; no inference executed")
   const model = createSetupRecommendationModel({ openai: { apiKey: process.env.OPENAI_API_KEY } })
   for (const { entry, caseDir, frozen } of prepared) {
-    await runRepetitions(frozen, model, { runId, caseId: entry.id, commit }, record =>
-      save(path.join(caseDir, `repetition-${String(record.repetition).padStart(2, "0")}.json`), record))
+    const records = await runRepetitions(frozen, model, { runId, caseId: entry.id, commit,
+      ...(smoke ? { experiment: "smoke" as const, provider: SETUP_RECOMMENDATION_PROVIDER } : {}) }, record =>
+      save(path.join(caseDir, `repetition-${String(record.repetition).padStart(2, "0")}.json`), record), smoke ? 1 : 10)
+    if (smoke) {
+      console.log(`Smoke status: ${records[0]!.status}; excluded from E0 baseline`)
+      if (records[0]!.status !== "success") throw new RunnerInputError("Smoke failed; inspect the saved status/error category. No retry executed")
+    }
   }
-  await save(path.join(output, "analysis.json"), await analyzeDirectory(output))
+  if (!smoke) await save(path.join(output, "analysis.json"), await analyzeDirectory(output))
   return output
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try { await main(process.argv.slice(2)) }
-  catch { console.error("E0 blocked/failed. Check corpus, preparation artifacts, HEAD and credentials locally. No raw SDK error logged."); process.exitCode = 1 }
+  catch (error) {
+    console.error(error instanceof RunnerInputError ? error.message : "E0 blocked/failed. Check corpus, preparation artifacts, HEAD and credentials locally. No raw SDK error logged.")
+    process.exitCode = 1
+  }
 }

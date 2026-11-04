@@ -74,6 +74,30 @@ Os testes estão em config própria, fora da descoberta da suíte raiz, como nos
 
 ## Executar a bateria real — somente após autorização explícita
 
+### Smoke isolado — uma tentativa
+
+```powershell
+pnpm.cmd exec tsx experiments/setup-recommender-stability/e0/run.ts --smoke --case storybook --allow-paid
+```
+
+Requer autorização explícita, `OPENAI_API_KEY` e o caso configurado no corpus local.
+Somente o caso selecionado é preparado e verificado; os outros PDFs podem estar ausentes.
+O smoke usa o mesmo payload congelado, factory, modelo e validação da baseline.
+Faz uma única tentativa, inclusive se geração ou validação falharem, sem retries.
+Sem `--allow-paid`, sem `--case`, com caso inexistente ou flags inválidas, bloqueia antes
+de iniciar inferência. `--case` só é aceito junto de `--smoke`.
+
+Saídas ficam em `e0/results/smoke/<UTC>-<UUID>/`, com `mode: smoke` em `run.json` e
+`experiment: smoke` no registro individual. O status pode ser `success`, `invalid` ou
+`error`; falhas retornam código de saída diferente de zero, após salvar o registro.
+Sucesso confirma uma resposta válida para uma chamada; não mede estabilidade nem acurácia.
+O arquivo individual contém hashes, provider/modelo/versão, escolhas válidas, tokens,
+latência e categoria segura de erro quando disponíveis. Não há `analysis.json` de baseline.
+O analisador recusa pastas smoke e exclui registros marcados como smoke mesmo se copiados
+para outra pasta ou fornecidos diretamente à função de análise.
+
+### Baseline — comportamento original
+
 Verifique os PDFs, ranges, idiomas e a representatividade do corpus. Configure
 `OPENAI_API_KEY` no ambiente sem salvá-la no manifesto ou nos artefatos. Recompile como acima.
 
