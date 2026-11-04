@@ -1,0 +1,7 @@
+{
+  "cases": [
+    { "id": "storybook", "candidate": "Storybook a selecionar", "pdf": null, "range": null, "userLanguage": "pt-BR" },
+    { "id": "textbook", "candidate": "Textbook a selecionar", "pdf": null, "range": null, "userLanguage": "pt-BR" },
+    { "id": "complex", "candidate": "Livro complexo a selecionar", "pdf": null, "range": null, "userLanguage": "pt-BR" }
+  ]
+}

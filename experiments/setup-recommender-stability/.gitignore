@@ -1,0 +1,8 @@
+e0/results/
+*.pdf
+*.local.json
+/corpus.json
+/e0/TECHNICAL_REPORT.md
+/e0/RESULTS.md
+*.patch
+*.zip
