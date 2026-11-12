@@ -12500,7 +12500,7 @@ msgid "To page"
 msgstr "Deri te faqja"
 
 msgid "To replace an image, use \"Edit layout\" and click the image."
-msgstr "Për të zëvendësuar një imazh, përdorni \\\"Modifiko strukturën\\\" dhe klikoni mbi imazh."
+msgstr "Për të zëvendësuar një imazh, përdorni \"Modifiko strukturën\" dhe klikoni mbi imazh."
 
 #~ msgid "To share a book, open it and go to its Export step — you'll find Publish there."
 #~ msgstr "Për të ndarë një libër, hapeni dhe shkoni te hapi i tij i Eksportimit — aty do të gjeni Publiko."

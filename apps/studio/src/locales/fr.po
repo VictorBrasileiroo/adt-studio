@@ -55,7 +55,7 @@ msgid "“{title}” is updated for readers"
 msgstr "« {title} » est à jour pour les lecteurs"
 
 msgid "\"A landscape forged by fire.\""
-msgstr "\\\"Un paysage forgé par le feu.\\\""
+msgstr "\"Un paysage forgé par le feu.\""
 
 #. placeholder {0}: connection.latest_version
 msgid "({0} ready to install)"
@@ -7421,7 +7421,7 @@ msgid "No mapped variables for this prompt yet."
 msgstr "Aucune variable n'est encore mappée pour ce prompt."
 
 msgid "No matches for \"{search}\""
-msgstr "Aucun résultat pour \\\"{search}\\\""
+msgstr "Aucun résultat pour \"{search}\""
 
 msgid "No matches."
 msgstr "Aucun résultat."
@@ -8122,7 +8122,7 @@ msgid "Optional. Add notes about tone, focus, or vocabulary. Use Auto-fill to st
 msgstr "Facultatif. Ajoutez des notes sur le ton, l'accent ou le vocabulaire. Utilisez le remplissage automatique pour commencer à partir du titre, de la langue et du résumé du livre."
 
 msgid "Optional. Tell the model what kinds of terms to focus on or avoid (e.g. \"skip proper nouns\", \"include scientific names\")."
-msgstr "Facultatif. Indiquez au modèle quels types de termes privilégier ou éviter (par exemple, \\\"ignorer les noms propres\\\", \\\"inclure les noms scientifiques\\\")."
+msgstr "Facultatif. Indiquez au modèle quels types de termes privilégier ou éviter (par exemple, \"ignorer les noms propres\", \"inclure les noms scientifiques\")."
 
 msgid "Optional. Terms added here are pinned to the glossary so they always appear, even after re-running AI generation."
 msgstr "Facultatif. Les termes ajoutés ici sont épinglés au glossaire pour qu'ils apparaissent toujours, même après une nouvelle exécution de la génération par IA."
@@ -10565,7 +10565,7 @@ msgid "Selected: {styleImageId}"
 msgstr "Sélectionné(s): {styleImageId}"
 
 msgid "Selecting \"None\" lets the LLM choose its own styling for each page."
-msgstr "Sélectionner \\\"Aucun\\\" laisse le LLM choisir son propre style pour chaque page."
+msgstr "Sélectionner \"Aucun\" laisse le LLM choisir son propre style pour chaque page."
 
 msgid "Self-contained ADT web app"
 msgstr "Application web ADT autonome"
@@ -12191,7 +12191,7 @@ msgstr "Ce livre n’est pas sur cet ordinateur."
 
 #. placeholder {0}: book.title
 msgid "This book is titled \"{0}\"."
-msgstr "Ce livre est intitulé \\\"{0}\\\"."
+msgstr "Ce livre est intitulé \"{0}\"."
 
 msgid "This book is too big to send in one piece"
 msgstr "Ce livre est trop grand pour être envoyé en une seule fois"
@@ -12500,7 +12500,7 @@ msgid "To page"
 msgstr "À la page"
 
 msgid "To replace an image, use \"Edit layout\" and click the image."
-msgstr "Pour remplacer une image, utilisez \\\"Modifier la mise en page\\\" et cliquez sur l'image."
+msgstr "Pour remplacer une image, utilisez \"Modifier la mise en page\" et cliquez sur l'image."
 
 #~ msgid "To share a book, open it and go to its Export step — you'll find Publish there."
 #~ msgstr "Pour partager un livre, ouvrez-le et accédez à son étape Exporter ; vous y trouverez Publier."

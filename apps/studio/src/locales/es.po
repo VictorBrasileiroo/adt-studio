@@ -53,7 +53,7 @@ msgid "“{title}” is updated for readers"
 msgstr "«{title}» está actualizado para los lectores"
 
 msgid "\"A landscape forged by fire.\""
-msgstr "\\\"Un paisaje forjado por el fuego.\\\""
+msgstr "\"Un paisaje forjado por el fuego.\""
 
 #. placeholder {0}: connection.latest_version
 msgid "({0} ready to install)"
@@ -3468,7 +3468,7 @@ msgid "Cover of {displayTitle}"
 msgstr "Portada de {displayTitle}"
 
 msgid "Cover of {title}"
-msgstr "Portada de {0}"
+msgstr "Portada de {title}"
 
 #. placeholder {0}: String(metadata.cover_page_number)
 msgid "Cover: page {0}"
@@ -7419,7 +7419,7 @@ msgid "No mapped variables for this prompt yet."
 msgstr "Todavía no hay variables mapeadas para este prompt."
 
 msgid "No matches for \"{search}\""
-msgstr "Sin resultados para \"{0}\""
+msgstr "Sin resultados para \"{search}\""
 
 msgid "No matches."
 msgstr "Sin coincidencias."
@@ -7992,7 +7992,7 @@ msgid "Open page in Storyboard"
 msgstr "Abrir la página en el Storyboard"
 
 msgid "Open page preview for {pageId}"
-msgstr "Abrir vista previa de la página {0}"
+msgstr "Abrir vista previa de la página {pageId}"
 
 msgid "Open part"
 msgstr "Abrir parte"
@@ -8120,7 +8120,7 @@ msgid "Optional. Add notes about tone, focus, or vocabulary. Use Auto-fill to st
 msgstr "Opcional. Añade notas sobre tono, enfoque o vocabulario. Usa Autocompletar para comenzar desde el título, idioma y resumen del libro."
 
 msgid "Optional. Tell the model what kinds of terms to focus on or avoid (e.g. \"skip proper nouns\", \"include scientific names\")."
-msgstr "Opcional. Indica al modelo en qué tipos de términos centrarse o evitar (p. ej., \\\"omitir nombres propios\\\", \\\"incluir nombres científicos\\\")."
+msgstr "Opcional. Indica al modelo en qué tipos de términos centrarse o evitar (p. ej., \"omitir nombres propios\", \"incluir nombres científicos\")."
 
 msgid "Optional. Terms added here are pinned to the glossary so they always appear, even after re-running AI generation."
 msgstr "Opcional. Los términos añadidos aquí se fijan al glosario para que siempre aparezcan, incluso después de volver a ejecutar la generación de IA."
@@ -8322,7 +8322,7 @@ msgid "Page {page}"
 msgstr "Página {page}"
 
 msgid "Page {pageId}"
-msgstr "Página {0}"
+msgstr "Página {pageId}"
 
 msgid "Page {pageNum}"
 msgstr "Página {pageNum}"
@@ -8945,7 +8945,7 @@ msgid "Pruned Images"
 msgstr "Imágenes eliminadas"
 
 msgid "Pruned: {reason}"
-msgstr "Eliminado: {0}"
+msgstr "Eliminado: {reason}"
 
 msgid "PT"
 msgstr "PT"
@@ -9151,7 +9151,7 @@ msgid "Re-run"
 msgstr "Re-ejecutar"
 
 msgid "Re-run {stageLabel}"
-msgstr "Reejecutar {0}"
+msgstr "Reejecutar {stageLabel}"
 
 msgid "Re-run {stageLabel}?"
 msgstr "¿Re-ejecutar {stageLabel}?"
@@ -9970,7 +9970,7 @@ msgid "Run {0} first"
 msgstr "Ejecuta {0} primero"
 
 msgid "Run {stageLabel}"
-msgstr "Ejecutar {0}"
+msgstr "Ejecutar {stageLabel}"
 
 msgid "Run {upstreamLabel} first"
 msgstr "Ejecuta {upstreamLabel} primero"
@@ -10560,10 +10560,10 @@ msgid "Selected pages {0}."
 msgstr "Páginas seleccionadas {0}."
 
 msgid "Selected: {styleImageId}"
-msgstr "Seleccionada: {0}"
+msgstr "Seleccionada: {styleImageId}"
 
 msgid "Selecting \"None\" lets the LLM choose its own styling for each page."
-msgstr "Seleccionar \\\"Ninguno\\\" permite al LLM elegir su propio estilo para cada página."
+msgstr "Seleccionar \"Ninguno\" permite al LLM elegir su propio estilo para cada página."
 
 msgid "Self-contained ADT web app"
 msgstr "Aplicación web ADT autónoma"
@@ -11470,7 +11470,7 @@ msgid "Styleguide Preview"
 msgstr "Vista previa de guía de estilo"
 
 msgid "Styleguide Preview — {styleguide}"
-msgstr "Vista previa de guía de estilo — {0}"
+msgstr "Vista previa de guía de estilo — {styleguide}"
 
 msgid "styles"
 msgstr "estilos"
@@ -12189,7 +12189,7 @@ msgstr "Este libro no está en este equipo."
 
 #. placeholder {0}: book.title
 msgid "This book is titled \"{0}\"."
-msgstr "Este libro se titula \\\"{0}\\\"."
+msgstr "Este libro se titula \"{0}\"."
 
 msgid "This book is too big to send in one piece"
 msgstr "Este libro es demasiado grande para enviar en una sola pieza"
@@ -12498,7 +12498,7 @@ msgid "To page"
 msgstr "Hasta la página"
 
 msgid "To replace an image, use \"Edit layout\" and click the image."
-msgstr "Para reemplazar una imagen, usa \\\"Editar diseño\\\" y haz clic en la imagen."
+msgstr "Para reemplazar una imagen, usa \"Editar diseño\" y haz clic en la imagen."
 
 #~ msgid "To share a book, open it and go to its Export step — you'll find Publish there."
 #~ msgstr "Para compartir un libro, ábrelo y ve a su paso de Exportación; allí encontrarás Publicar."
@@ -12844,10 +12844,10 @@ msgid "Unknown stage"
 msgstr "Etapa desconocida"
 
 msgid "Unknown step slug: {step}"
-msgstr "Slug de etapa desconocido: {0}"
+msgstr "Slug de etapa desconocido: {step}"
 
 msgid "Unknown step: {step}"
-msgstr "Paso desconocido: {0}"
+msgstr "Paso desconocido: {step}"
 
 msgid "Unnamed account"
 msgstr "Cuenta sin nombre"
